@@ -13,7 +13,6 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
         NSUserDefaults.standardUserDefaults().setValue(locationName.text, forKey: "loc_name_preference")
     }
     
-    
     @IBAction func onLatitudeChange(sender: AnyObject) {
         NSUserDefaults.standardUserDefaults().setValue(latitude.text, forKey: "loc_lat_preference")
     }
