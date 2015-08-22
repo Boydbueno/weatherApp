@@ -56,7 +56,7 @@ class HistoryController: UITableViewController {
         let fetchRequest = NSFetchRequest(entityName: "Weather")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dt", ascending: false)]
         fetchRequest.fetchLimit = 10
-        let predicate = NSPredicate(format: "name == %@", locationName!)
+        let predicate = NSPredicate(format: "name != nil")
         fetchRequest.predicate = predicate
         let fetchedResults = self.context!.executeFetchRequest(fetchRequest, error: nil) as? [NSManagedObject]
         
@@ -109,6 +109,19 @@ class HistoryController: UITableViewController {
                 self.loadWeather()
                 self.tableView.reloadData()
             }
+            // This actually doesn't do anything, my webservice already handles storing the weather when retrieving it.
+            // Just kinda showing that I understand how it works
+            var request = HTTPTask()
+            request.POST("http://178.62.153.139/api/weather", parameters: weatherRecord as? Dictionary<String, AnyObject>, completionHandler: {(response: HTTPResponse) in
+                if let err = response.error {
+                    println("error: \(err.localizedDescription)")
+                    return //also notify app of failure as needed
+                }
+                if let res: AnyObject = response.responseObject {
+                    println("response: \(res)")
+                }
+            })
+
         }
     }
     
