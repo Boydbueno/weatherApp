@@ -59,6 +59,11 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
             object: nil
         )
         
+        var localNotification: UILocalNotification = UILocalNotification()
+        localNotification.alertBody = "Just a dummy notification"
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: 5)
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        
         updateSettings()
     }
     

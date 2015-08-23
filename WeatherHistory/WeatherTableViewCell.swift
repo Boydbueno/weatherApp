@@ -2,6 +2,7 @@ import UIKit
 
 public class WeatherTableViewCell: UITableViewCell {
 
+    
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var lat: UILabel!
     @IBOutlet weak var lon: UILabel!
