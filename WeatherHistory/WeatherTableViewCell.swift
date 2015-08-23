@@ -29,7 +29,7 @@ public class WeatherTableViewCell: UITableViewCell {
     }
     
     public func setTemperature(temp: Double) {
-        self.temp.text = "°C"+toString(temp)
+        self.temp.text = "°C"+toString(Int(temp))
     }
     
     public func setWeatherType(type: String) {

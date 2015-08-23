@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Izv-ul-xYN">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -154,10 +155,10 @@
             </objects>
             <point key="canvasLocation" x="-499" y="978"/>
         </scene>
-        <!--Item 2-->
+        <!--Map-->
         <scene sceneID="5if-jc-cWm">
             <objects>
-                <viewController id="UbU-CE-b6v" sceneMemberID="viewController">
+                <viewController title="Map" id="UbU-CE-b6v" customClass="MapViewController" customModule="WeatherHistory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4pf-kp-qp2"/>
                         <viewControllerLayoutGuide type="bottom" id="Ul5-fu-bRp"/>
@@ -165,18 +166,32 @@
                     <view key="view" contentMode="scaleToFill" id="hDc-2V-nAn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="KyY-yX-yQS">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KyY-yX-yQS" firstAttribute="top" secondItem="hDc-2V-nAn" secondAttribute="topMargin" id="4xH-Zv-e8B"/>
+                            <constraint firstItem="KyY-yX-yQS" firstAttribute="bottom" secondItem="hDc-2V-nAn" secondAttribute="bottomMargin" id="b7h-OB-bwS"/>
+                            <constraint firstItem="KyY-yX-yQS" firstAttribute="leading" secondItem="hDc-2V-nAn" secondAttribute="leadingMargin" constant="-16" id="gFj-f6-XSh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KyY-yX-yQS" secondAttribute="trailing" constant="-16" id="pRc-iJ-tYg"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="OMu-SQ-ese"/>
+                    <tabBarItem key="tabBarItem" title="Map" id="OMu-SQ-ese"/>
+                    <connections>
+                        <outlet property="mapView" destination="KyY-yX-yQS" id="VWW-48-vHR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eA2-pf-E5z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="982" y="118"/>
         </scene>
-        <!--Item 1-->
+        <!--Current-->
         <scene sceneID="S9n-CP-KeI">
             <objects>
-                <viewController id="gPB-Go-wW1" sceneMemberID="viewController">
+                <viewController title="Current" id="gPB-Go-wW1" customClass="CurrentWeatherViewController" customModule="WeatherHistory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dmX-2K-cDA"/>
                         <viewControllerLayoutGuide type="bottom" id="R7w-lV-I7G"/>
@@ -184,9 +199,41 @@
                     <view key="view" contentMode="scaleToFill" id="LZG-8G-6th">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGh-Kf-9xs">
+                                <rect key="frame" x="211" y="97" width="179" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="179" id="TAZ-PA-dTt"/>
+                                    <constraint firstAttribute="height" constant="21" id="aGW-4w-OHW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQW-My-2nk">
+                                <rect key="frame" x="195" y="159" width="210" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="a9y-6C-yXo"/>
+                                    <constraint firstAttribute="width" constant="210" id="fLT-ie-dzs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BGh-Kf-9xs" firstAttribute="top" secondItem="dmX-2K-cDA" secondAttribute="bottom" constant="33" id="DQz-MM-kU8"/>
+                            <constraint firstItem="QQW-My-2nk" firstAttribute="top" secondItem="BGh-Kf-9xs" secondAttribute="bottom" constant="41" id="YbZ-54-7ZH"/>
+                            <constraint firstAttribute="centerX" secondItem="BGh-Kf-9xs" secondAttribute="centerX" id="bAR-uI-lbw"/>
+                            <constraint firstAttribute="centerX" secondItem="QQW-My-2nk" secondAttribute="centerX" id="cA2-6n-Hhw"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="NM5-Z6-mWf"/>
+                    <tabBarItem key="tabBarItem" title="Current" id="NM5-Z6-mWf"/>
+                    <connections>
+                        <outlet property="temperatureLabel" destination="QQW-My-2nk" id="eAI-h7-pGm"/>
+                        <outlet property="typeLabel" destination="BGh-Kf-9xs" id="xvI-mz-yhe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqJ-Te-wKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -322,10 +369,10 @@
             </objects>
             <point key="canvasLocation" x="-499" y="275"/>
         </scene>
-        <!--History Controller-->
+        <!--History-->
         <scene sceneID="s2y-F7-716">
             <objects>
-                <tableViewController id="NDK-53-2Zn" customClass="HistoryController" customModule="WeatherHistory" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="History" id="NDK-53-2Zn" customClass="HistoryController" customModule="WeatherHistory" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="xDs-sk-uHw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
