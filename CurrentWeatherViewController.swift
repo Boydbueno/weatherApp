@@ -84,8 +84,11 @@ class CurrentWeatherViewController: UIViewController {
                     println("error: \(err.localizedDescription)")
                     return //also notify app of failure as needed
                 }
-                if let res: AnyObject = response.responseObject {
-//                    println("response: \(res)")
+                if let data = response.responseObject as? NSData{
+                    let records: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil)
+                    // Just to show that the data is really being send to my webservice and that is in proper to handle if was needed
+                    println("response after storing")
+                    print(records)
                 }
             })
             
